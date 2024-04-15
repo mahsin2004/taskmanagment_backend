@@ -21,6 +21,10 @@ export class UsersService {
     return await this.userModel.findById(id);
   }
 
+  async getUserByEmail(email: string){
+    return await this.userModel.find({ email: email });
+  }
+
   async updateUser(id: string, updateUserDto: UpdateUserDto){
     return await this.userModel.findByIdAndUpdate(id, updateUserDto, {new: true});
   }

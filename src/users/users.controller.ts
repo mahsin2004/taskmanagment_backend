@@ -28,6 +28,13 @@ export class UsersController {
         return findUser;
     }
 
+    @Get("email/:email")
+    async getUserByEmail(@Param("email")  email: string){
+        const findUser = await this.usersService.getUserByEmail(email);
+        if(!findUser) throw new HttpException("user not found", 404);
+        return findUser;
+    }
+
     @Patch(":id")
     async updateUser(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto){
         const isValid = mongoose.Types.ObjectId.isValid(id);
